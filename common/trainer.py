@@ -14,12 +14,14 @@ class Trainer:
         self.optimizer = optimizer
         self.loss_list = []
         self.eval_interval = None
+        self.epoch_interval = None
         i = 0
 
     def fit(self, x, t, max_epoch=10, batch_size=32, max_grad=None, eval_interval=20, epoch_interval=10):
         data_size = len(x)
         max_iters = data_size // batch_size
         self.eval_interval = eval_interval
+        self.epoch_interval = epoch_interval
         model, optimizer = self.model, self.optimizer
         total_loss = 0
         loss_count = 0
