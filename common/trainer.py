@@ -15,6 +15,7 @@ class Trainer:
         self.loss_list = []
         self.eval_interval = None
         self.epoch_interval = None
+        self.current_epoch = 0
         i = 0
 
     def fit(self, x, t, max_epoch=10, batch_size=32, max_grad=None, eval_interval=20, epoch_interval=10):
