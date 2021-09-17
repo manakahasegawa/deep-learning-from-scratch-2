@@ -14,7 +14,7 @@ class Trainer:
         self.optimizer = optimizer
         self.loss_list = []
         self.eval_interval = None
-        self.current_epoch = 0
+        i = 0
 
     def fit(self, x, t, max_epoch=10, batch_size=32, max_grad=None, eval_interval=20, epoch_interval=10):
         data_size = len(x)
@@ -46,7 +46,7 @@ class Trainer:
                 loss_count += 1
 
                 # 評価
-                if (eval_interval is not None) and (iters % eval_interval == 0 ) and (epoch % epoch_interval == 0) :
+                if (eval_interval is not None) and (iters % eval_interval == 0 ) and (self.current_epoch % epoch_interval == 0) :
                     avg_loss = total_loss / loss_count
                     elapsed_time = time.time() - start_time
                     print('| epoch %d |  iter %d / %d | time %d[s] | loss %.2f'
