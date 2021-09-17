@@ -91,7 +91,7 @@ class RnnlmTrainer:
         return batch_x, batch_t
 
     def fit(self, xs, ts, max_epoch=10, batch_size=20, time_size=35,
-            max_grad=None, eval_interval=20):
+            max_grad=None, eval_interval=20, epoch_interval=10):
         data_size = len(xs)
         max_iters = data_size // (batch_size * time_size)
         self.time_idx = 0
@@ -117,7 +117,7 @@ class RnnlmTrainer:
                 loss_count += 1
 
                 # パープレキシティの評価
-                if (eval_interval is not None) and (iters % eval_interval) == 0:
+                if (eval_interval is not None) and (iters % eval_interval) == 0 and (epoch % epoch_interval) == 0:
                     ppl = np.exp(total_loss / loss_count)
                     elapsed_time = time.time() - start_time
                     print('| epoch %d |  iter %d / %d | time %d[s] | perplexity %.2f'
